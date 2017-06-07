@@ -2,9 +2,9 @@
 <form action="/new" method="POST">
 	<div class="form-group">
 	    <label>Name</label>
-	    <input name="username" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter your name" style="width: 800px" value="">
+	    <input name="post[name]" type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter your name" style="width: 800px" value="">
 	</div>
-  	<textarea name="content" class="form-control" rows="6" placeholder="Type post text here" style="width: 800px"></textarea>
+  	<textarea name="post[content]" class="form-control" rows="6" placeholder="Type post text here" style="width: 800px"></textarea>
   	<br />
   	<button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -19,8 +19,9 @@ get '/new' do
 end
 
 post '/new' do
-  	@content = params[:content]
-  	@username = params[:username]
+  	
+  	@p = Post.new params[:post]
+  	@p.save
 
   	redirect to '/'
 
