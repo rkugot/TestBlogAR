@@ -22,6 +22,12 @@ get '/new' do
 	erb :new
 end
 
+get '/post/:id' do
+	@comments = Comment.find(params[:id])
+	@row = Post.find(params[:id])
+	erb :details
+end
+
 post '/new' do
   	
   	@p = Post.new params[:post]
@@ -33,3 +39,15 @@ post '/new' do
   	end
 
 end
+
+post '/post/:id' do
+	@row = Post.find(params[:id])
+	@c = Comment.new params[:com]
+	@c.save
+	erb :details
+end
+
+
+
+
+
