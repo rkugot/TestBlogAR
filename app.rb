@@ -11,5 +11,17 @@ class Post < ActiveRecord::Base
 end
 
 get '/' do
-	erb "MyBlog"			
+	erb "My Blog"		
+end
+
+get '/new' do
+	erb :new
+end
+
+post '/new' do
+  	@content = params[:content]
+  	@username = params[:username]
+
+  	redirect to '/'
+
 end

@@ -1,0 +1,18 @@
+<h2>Latest posts:</h2>
+<br />
+
+<% @results.each do |post| %>
+	<p>
+		<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+		<em><%= post['username'] %></em>
+		<br />
+		<br />
+		<%= post['content'] %>
+		<br />
+		<br />
+		<small class="pull-right">Added at <%= post['created_date'] %></small>
+		<br />
+		<small class="pull-right"><a href="/post/<%= post['id'] %>">Comments</a></small>
+	</p>
+	<hr />
+<% end %>
