@@ -14,6 +14,7 @@ end
 
 class Comment < ActiveRecord::Base
 	belongs_to :post
+	validates :content, presence: true
 end
 
 get '/' do
@@ -50,8 +51,12 @@ post '/post/:id' do
 	@row = Post.find(params[:id])
 	@comments = Comment.where(post_id: params[:id]).order "created_at DESC"
 	@c = Comment.new(post_id: post_id, content: content)
-	@c.save
-	erb :details
+	if @c.save
+		erb :details
+	else
+		@error = @c.errors.full_messages.first
+		erb :details
+	end
 end
 
 
