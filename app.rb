@@ -12,6 +12,9 @@ class Post < ActiveRecord::Base
 	validates :content, presence: true
 end
 
+class Comment < ActiveRecord::Base
+end
+
 get '/' do
 	@posts = Post.order "created_at DESC"
 	erb :index		
@@ -23,7 +26,7 @@ get '/new' do
 end
 
 get '/post/:id' do
-	@comments = Comment.find(params[:id])
+	@comments = Comment.where(post_id: params[:id]).order "created_at DESC"
 	@row = Post.find(params[:id])
 	erb :details
 end
@@ -41,8 +44,11 @@ post '/new' do
 end
 
 post '/post/:id' do
+	post_id = params[:id]
+	content = params[:content]
 	@row = Post.find(params[:id])
-	@c = Comment.new params[:com]
+	@comments = Comment.where(post_id: params[:id]).order "created_at DESC"
+	@c = Comment.new(post_id: post_id, content: content)
 	@c.save
 	erb :details
 end
