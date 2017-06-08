@@ -7,7 +7,7 @@ class CreatePosts < ActiveRecord::Migration[5.1]
     	end
 
     	create_table :comments do |t|
-    		t.belongs_to :post, index: true
+    		t.belongs_to :post, index: true, dependent: :destroy
     		t.text :content
     		t.timestamps
     	end
